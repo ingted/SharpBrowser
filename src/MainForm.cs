@@ -24,7 +24,7 @@ namespace SharpBrowser {
 	/// We used the x86 version of CefSharp, so the app works on 32-bit and 64-bit machines.
 	/// If you would only like to support 64-bit machines, simply change the DLL references.
 	/// </summary>
-	internal partial class MainForm : Form {
+	public partial class MainForm : Form {
 
 		private string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\";
 
@@ -352,12 +352,15 @@ namespace SharpBrowser {
 				return newTab.Browser;
 			});
 		}
+
+		public List<ChromiumWebBrowser> cbl = new List<ChromiumWebBrowser>();
+
 		private BrowserTab AddNewBrowser(BrowserTabStripItem tabStrip, String url) {
 			if (url == "") url = BrowserConfig.NewTabURL;
 			ChromiumWebBrowser browser = new ChromiumWebBrowser(url);
-
-			// set config
-			ConfigureBrowser(browser);
+            cbl.Add(browser);
+            // set config
+            ConfigureBrowser(browser);
 
 			// set layout
 			browser.Dock = DockStyle.Fill;

@@ -1,0 +1,312 @@
+﻿{
+	"ifconfigloaded": true,
+	"clustername": "cluster-system",
+	"loglevel": "DEBUG",
+	"nodeinfo": {
+		"defaultactorsystemlocalroles": [ "proc", "ShardNode", "singletonRole", "Worker" ]
+	},
+	"services": [
+		{
+			"name": "Scheduler",
+			"ifEnable": false
+		},
+		{
+			"name": "Var",
+			"ifEnable": false,
+			"vardbhost": "10.38.112.93",
+			"vardb": "AkkaPersistence_fakka",
+			"vardbuid": "sa",
+			"vardbpwd": "/'],lp123/'],lp123",
+			"vartbl": ""
+		},
+		{
+			"name": "TrivialEventHelper",
+			"ifEnable": true
+		},
+		{
+			"name": "JwtHelpers",
+			"ifEnable": true
+		},
+		{
+			"name": "AddJwtBearer",
+			"ifEnable": true
+		},
+		{
+			"name": "TrivialSourcing",
+			"ifEnable": true
+		},
+		{
+			"name": "ReadService",
+			"ifEnable": false
+		}
+	],
+	"Scheduler": [
+		{
+			"Id": "TrivialCoreSch",
+			"ScheduledJobs": [
+				{
+					"state": {
+						"ifScheduledUpdated": "false",
+						"ifScheduled": "false",
+						"ifDeployed": "false"
+					},
+					"id": 0,
+					"data": {
+						"worker": "pyExecutor",
+						"trigger": "--cron \"20 * * * * ?\"",
+						"message": "\nimport pandas as pd\nimport numpy as np\nimport pickle\nimport torch\nfrom torch.optim import optimizer\nfrom sklearn import datasets\nimport matplotlib.pyplot as plt\n\ndef f():\n    return pd.DataFrame({\"a\":[1,2,3], \"b\":[4,5,6]})\n\ndef tf_to_int(v):\n    if v:\n        return 1.0\n    else:\n        return 0.0\n\ndef main(n_samples, n_features, noise, random_state):\n    feature_numpy, target_numpy = datasets.make_regression(n_samples=n_samples, n_features=n_features, noise=noise, random_state=random_state)\n    feature = torch.from_numpy(feature_numpy.astype(np.float32))\n    target = torch.from_numpy(target_numpy.astype(np.float32))\n    return [feature, target]\n"
+					}
+				}
+			]
+		}
+	],
+	"Python": {
+		"Runtime": {
+			"PythonDLL": {
+				"Windows": "C:\\Users\\anibal\\AppData\\Local\\Programs\\Python\\Python38\\python38.dll",
+				"Linux": "/home/esapadmin/miniconda3/bin/python"
+			}
+		}
+	},
+	"fsi": {
+		"fakkaRoot": "G:\\coldfar_py\\gym_fs\\gym_fs\\fakka\\FAkka.Shared\\bin\\net6.0",
+		"fakkaBinary": "G:\\coldfar_py\\gym_fs\\gym_fs\\fakka\\FAkka.Shared\\bin\\net6.0\\FAkka.Shared.exe"
+	},
+	"akka": {
+		"cluster": {
+			"sharding": {
+				"defaultConfig": {
+					"shardCount": 8
+				}
+			},
+			"messageExtractor": {
+				"purgeCacheInterval": 60000
+			}
+		}
+	},
+	"PlugIn": [
+		{
+			"PlugInMySQL": {
+				"DataSources": {
+					"mc_legacy_read_replica": {
+						"conn_str": "Server=34.141.8.53;User ID=mc-web-db-prod-read;Password=$S\\:\"bQt5IvdkUpu;Database=wordpress;Connect Timeout=300;",
+						"SslCert": "G:\\Downloads\\data-team\\client-cert.pem",
+						"SslKey": "G:\\Downloads\\data-team\\client-key.pem",
+						"SslCa": "G:\\Downloads\\data-team\\server-ca.pem",
+						"ifSSL": true
+					}
+				}
+			},
+			"PlugInMSSQL": {
+				"DataSources": {
+					"NLOG_sa": {
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCS0ZpZEhqbjkySHRLMU02aTBFRitXWnlDUUw4VEJ3NlR1SHVaajFzM1daaWRVcURzaWx3dGYzYWpzOUM1NUE4TzBpcjJqdEZtTDhiS0h1MjVSUTVRZ3JjOWdVa2gyQU9iaE9UeHcrVE9jYVBuTU00RXZxNXAyZFhDZi8zODNUVlJ1a1dDT2JVcGtxdTE2YVVqV2VLNk5FbWlKSU03WHIvUEppMlhrWjhyU0YyT3JjQ0dtRnZvVnU4VVpicERQU2p3UU83Tm95bmVkYTBOVFhjZ3FTb0VWL0NkK0d4US85VHYxRkZYQmRXZXV0SDhNTTVlenI3VnZJSCtTbEM1NXVweXVYUDlrRFBGem9sQnhTZ0ZNSTNtbEVJejBWM1hnSzF6d2MwVkZhTlZuUXo5dlBqQUVLVC9LSnRqWUNWTWo5d3dnRzFCMWptL3ZFT2NVVHU2MytHSjl3PT0A2AJnNGF1VWp0cTRlSFV6L1g3UHdlaE1zcDg0aHQxTVFkQzNJQjZVZjQxdno2b3FtMnlLcFZkRmY3c0F0UEFPSHNuRFMvYnFybTF0K1RWZ3pSV2NPMmdJbDFDOTZkT2JGbi92ZWNMbSthVTNHNlRPVjIrVnI5Z2l6dHdvWDcxZmZVU1Z3d0s5UUpUS3BjYVhVKzNSUzlYWnhoWStJa0ZIMFJHTm9ZU3lKY2x0N0daeEJacUVwekx6SG9ua1NmRE9yTnBCVUtXVUV2ejNJayttcHFpcmdBS0dncWNmVHlvSjNsYWNGbnM0RkhOOWs0ZXdOWnZpbmR1bEx5eW5ubWZqUCtDNHNKdHdSRkc2d3JKUmJyTGdRVDNEaEJFZWJFVnpuUWJmTFdrc1pqNTI3VDNnSnFmdGR2RnA5MDJUVGVNMVhFY0tLN2JFRVgvSk5oNW1LVWhSZC83K0E9PQ=="
+					},
+					"AkkaMDC_sa_93": {
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCcHkrMU9jZXhLZGZ1d1F4NTFPQXJjUjFrSi8xNHcxcVJ2dHZaM3ByRmpsalg3VG1LQ25WVGo1SVlWSDZxZnFJTzYxL3ExM2NxdjRuZE1YbUt3ekFxTG9XUmxNckFyVHZXMVl5UzlYdHlEY1lGeEFkaHlwMEs4UUl4ZEdWczhpRENEZXA4Mzk5SzlEdXRKWWxaNFIyajU0ZmtpZGFaZE9SekJvRE84UytrWXhteS84MGpBaU4yb1JZU3VFZE1qV2tWWUlNQ3pSSUVGblpqbGdrWnNrQmhRNDJMR1JHNmw2ZTdkTDRMUTNhY2NRMCt4M3V4WVJlcmhuYXIvUkVjdkthVGNqcXU2NjN3eU9DTDNRek5GS2lxd0xxM1FTcEdJTUcxWlp4YUpMWXpQZTU4NVdobTdwZDZLTm94MEMwZjlab1FXRktzUHA5eW9TaUNTbWZhTXZEMnVBPT0A2AJSSTBXQ2hoRW5nWW5hZXg0dThKSnF6bUgzZDNUb0VFTytERC83TVdsN011b3QvZEx6TzdiNEJvbjZNMEdVbEttYzNTdXZhZFRuY29iK1RIMVh5MjRIeTJqV2FpamswcHFlMlErWHN2ams1ZnNxczk5d211TU82ZTkzdTZwSHNXQnhEVkJCdGRkMnJKekVJdVhvSkhkN0tmb0NjNitMUGNnSXJwcUFtTnUvSkZscGlydSt5NENseEJrNk94OW5ybU16clFnMUNDdnR1VTlRN2pzR2w5d3lISE1rbDZhWCtqcll3SGd0NXpabXl4SmpMK2xNc3M5U21lZld2N3RGaiswMDNNcmpRYmxwTE9xV1BVNUo0dTh2K1o4NVl3dnpqVXNEQ01Yc3FBbXZGS1RidlVpdkZYcWtVbGM2Z1BuWEtWdHhvdGF5TDdpODhVTnl5MkphdmR1OHc9PQ=="
+					},
+					"AkkaMDC_sa_161": {
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCRzNYbTRaMmgyUDBIMWUxNzNGcURaWU9kOFdLVmhvS0ovRnFUYlZQV0Iza1daZTZnOStFdXpHN2kzQkNCdTVVSStmSWl2Y3VER09TcW1kTUIxakRSUk04YXdOclp1NjZESlV0cVN5cGE2NjZRbElKQlJPNGZCS0dnd015bVpldno4RWJhb0Fwb0oveVR5VHYzdGtrRUxnZ1JVL1lCZEczMUN6S1AzS05sUmw2eXo1VnY4TG9LK25QVlQvbW96UndmWlA2Q0hNbEY4VGd0MWJaTGJkaDE5SGlvK0ViSGt3NWJrNXJkSFhmREZmdmNyajhRYjhVRERmemV2Tm1McU5RUEE1ZHRraVNsSGhCRGRBRWlFVUsxdDlRUHFtVjVaVU80SFZyY2hoSU8xRDZqSlFXYWdCczdvM0srMWJ6T3gwY1B3bGVWbkx2N3RISjVKaWdHUlhhVnZBPT0A2AJMZlMyR0VSVzc3RTZxUk9SNmd2Sm5kK3o4bDBFbWtKRVJxRmtLdVgvSXFDd0N2SkVqK05FRTJWRGNoQ1QzU0xPZTdVZW9ESjVWbGdqcFNCK0ZvS1krNkRqd052WUxtNnZmMEtnTExLbE4wL3dUc2h5Ykl4Y1B2SFoySWlnNWJKeVFYbGluQkRnMVU4UWJNMit6NmE5UHozdVlMR1BVdGxvS013RjJEcmxiMFBhWEtsQmljVUNNNnpnL05iRk1IUDhyYmNPNGFUN2Q5YTJDQXFqSHR3VXhzV3lid2VBMGcwMW9DVDJiT054a1AxY2RyeEFITUZUckJaL1RqTnhmdlhIQXpxMGRqUE03TWlKSGtyYkdyazdqWHAybXcwZDhOV3FHNlNxU09ySmVaeHhjcHd4cmp4ODBqK2pZdHRsN2NyQ2FhcnFYMThNMEhLcmVhWXp1YjNoQWc9PQ=="
+					},
+					"AkkaMDC_sa_to203": {
+						"to": 203,
+						"from": 143,
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCc1FiNHpRV3F2MjFsSEFmNXlrUGE4NmppVEhTSjZvaTZ5UFlhVEpRYVIyMzJrS29uRUFlV3FlcmROa1d3bnZPZWN5dERaYkRLamY5dEJrNVVwOHBKcUJYQVNaY1E5NVV1dHRUc3RHMTBMZU9Pd0FuN1czMTNBYmlvNUIxN1BEVko3Nk43TDBjclhYNWp0a1MyeW1zZDZBQkxBaUQrVHFlSlpqRkJPK3N6SXpJdy9GaTBxcllvaWFjT01SUHdTR0ppNVYwNm5MeitJZTZHWHBSYjJmRlJSUWdZd2JVaTlBMi9VU01UZGlqTytzcUQ1dDgvc0VhempmaEFOQTZ5b0hOd2VHL3RPN2cwaHR3Q29BNFdQTmxqRjl4N2hHenhrRVRLVG5KSTVSMGpZSnhocFcrZDZTZmRlWklqLzVGekxka2o1blFKVjF4T25seVNTZVJnZkhMdmNnPT0A2AJTOWlITFZaemxxTjRIeDE1T0RjQTVqb21pYW1ZeWljWldrNWpLaDc4SXlJMFU4dHNaSTV3WFlMS1VYUUNLOUJnWlhud3pPMFYvS0w3ZXVpNVF4Y1BmK1dXenp6RGlkbVNRekdDN1UyRUhOZktGeFhNVDhGK2NXVWNmZjlZUjNLbjBqc0NmUVZmZjZMMVdHQlNwaXMvRitRTXdYcHlQa215NUJ3ejE3U3Vpc09LbEwzSGwzRHczTlhYS3J2eXowRTJyRU1kTGdsWGEvOUZhOVp4cjVNT1ZSRXROd3lZaVl4ZCtvRXhCS0ZnU3dUdDlyNi9TUjVvQlJYOUlFLzJsZFovTmNzeFBiZ1E1ZWx2ZWJjbVpJTkt3WUpHYnlhOE9GaFl6YW8yTEtsTThGSlZmdmpOb1ZPWUdYR2FBVkk1YnpMampWdVg4SFNFaUdJaWh3c1Znd1RtTHc9PQ=="
+					},
+					"AkkaMDC_sa_to161": {
+						"to": 161,
+						"from": 143,
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCQWl0MlI5NXpQNmZqcFFQMVVVUHNXMlZvTFNiS0FsK0JwcXdwTXQwbFlPRTVoV2Z3UXN4cVJSVS8vc0E3eVRXUkxBeGgzMUFtQnJ3dy9QZEN5TmNSWWZJK2N5RGxmYWRoMXc4M21OT0JMYTJNYUU2cEx3RnYydDJuaDRVVmZPbUFLK1V2OXp4dHhnVUVQTzJnTWxFKzhKc3I5cEtVRVk1T3pSNCsxSkQ4bXU3TVdlTnBxQkZBM21WN1krSWpLckduY1pTRW1lakNNQ2JYbVc3OTdNblpmc2ZuZFBjdjdNdVpoYjE0enNIS0ZuMW9SYVVtZkRyVEJjWmFUbHUrZFJxQmZ0aE9yRE9NQmJoVDNzYmJnR01scmxXdVNlWmI2dmJ0OCtiSjFaeWUzQ0NuMUVMRW0wdVRYQ0JFczNDL3QvNDJZRkNQWDdkNnkwWlYycUpvaG95QzF3PT0A2AJxbGljOCttRytoVWQ0eFJTZmdlQVlWaCtMVy9qbTdlOURxUzZMWWdxT1lDZDRNYll4c1ordXBpT1NESFovRzc2SXNSQ3FBaGdHR3RzU081M1NqU2hQYU5kTytJZ0RBSXhiM05zcWpKS3FIbEQzdkh5dUFzQW1XMC9zN2IxZEdTMjNPWXF0WkVELzJDaVNIMklsY2RTdllXRzRDd09YcVdMSEk0dnJlUTZZVHY1QmpPdXoxNEJKb1QwWHpNeWZLS2c5cUp0bnl0MGh1ckgxbGFnUUtDNU56WDRETE9MOE9HSUJTS1NaTjB2QXFzajZCcVRMc0prNjRVd0JjR1REcVh5N3pySllvL3FtS0NtbS9pRngvZG81MjhQbmRDMzhwZ0gzSHphKyt1MGM4TW9NWUlKTlFKNzBnQ3BnOVhIQ1RtRE9UZU1PQUFPeDNidUxZVytxUDNscGc9PQ=="
+					},
+					"AkkaMDC_112.143to93_odswriter": {
+						"dest": "93",
+						"from": "112.143",
+						"login": "odswriter",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCZ2xuMjYzaXM5MDZzTUZ0U09QUU02dFJIeGZmTXU2bU43b3pYVVJBelZTbG1RUU5PVmRSQys4anpmdzZ3RG01NU5OeG8zT1I1OTlXMGFRWmRwbHhZcHVUL3ZUcS9pY256c25RRUpNYlV1SnZKM3JZSEdkTGRERlRRRzh5dzlYUnYxOFNxY0NKMW1lbUdCYm5FZWgrMmp4dXQwQzJyWUsvY01rRi85TExEeWt0dlhiQXk1L1B2YUdhVnptV0tEdVArM0RBSlZqcEpGdnZDdEFQeEt0WFVaSy9sancvc0p4YjJHMlQzR1FQbS9Gdiszd3gzUm1kSWRxUzgwYmhPcjZ4dkVvK1NqL2llaDNWcVQyMUdYZ2dNMFdIalQwZURLSUZQZGR4SVpOZ3dDNWoxelVIMUgvSHF3LzZCcUR6WDlsblhRZG8rUmdyTzRvdTRsc2E2NCtveDBRPT0A2AJlVHE2dGVxOHB6MmlzR2xOZ1E2NXp1MDNDTVlRaS9oekFLN3BrTzRBeE8zS3A4d3pieEVqM3huamxTaHF6SVoyT3F0b25mVTY5azZxRGc0TE1qVHhwYTlRVC9BOFdPbWExMXZ6Tys4R0x2UGp5d2piUHdhMjN5MjFzNTRoQ3EzbFE0VW1kN05rWWxuNnJVWXVRM05wNG4zU3dwWWZRVCtXZVFCRzhEUmRFNkdKcEtPLzVESEVjeW91aWsva2tjak01bmQyYlNWTGk0WHFUQnlNYkVhbmhmRmhXRmlzMEkvdXlBUWF2V29aM3JOYXl4UUpUd1ZkL1l0TEJLMmd0VlhHaEdXZk13QXQ1WlpBZXFWb0ZXMVc0T1FOM1JkTnd2VUwxdG1nTmZQOFh5QkFtMHBjREZlcElxTi9NNlhhaTJGSCtydngzbUlHb0hkQmo0TXhxdXk2N2c9PQ=="
+					},
+					"AkkaMDC_199.143to93_odswriter": {
+						"dest": "93",
+						"from": "199.143",
+						"login": "odswriter",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCV0Q2ZFpLOHFEOEQ1b0pwNG9OcnN3ZzJoRGw1dGgydG1ML2QvUWtjZ01uTlduQXhDU3Y0RjhMMytpOUdWeHFaTDFNS20zK3BtOWkzU1E2eE10VWIwckZIVEFJMDk2aHRuYnVwWnV3dk95TGlsTDRSZkQzODVaaU9qcU5UOEIreFFVL2JiTHVUQ0dvS1FrSEpUenBmTTBkRUVpamhwOGJUUythQy9JcWtPTWEvT1B4U2E4MkVqYnFpV0RCWFI4TFVMUCt6ck5tV09oREhaM2tta2ZQOUNrd1Q1cU8xcVJRMVZmc0F1OUd6azJIWUJnT0IwazJkSE9wTnM4V1pGakF1bTREL3RRakpqWTZwL01lTHpzRlg3ejVRb1BhMnliY2JBeGlTK3hJYWEvSHh2OTlwaFRsRGhnL0kyZmM3OVVYdFlGNU9reUEwUnBQZHFCMUFuQThOeFJ3PT0A2AJaeUJlWW9ua0I2b295V0lkNys3MWsyT3dDSUdwUTNjSUp3SkNvaDdLN1laSzJ1UEVOcXF4alNKYlFrbE9GZCtXdzNZTDBNeEJvbGMwL1NKVGlWUllVd3d4QWNMUk5VMGs3SzRscGlHdjh4d3ZTZXhjYU9xZzM1aVd3VTdNRUM0QXBLTllLQ0VBcEVhYzBGR2NjSmR4ZkgySXNnVjd2NkJUeWx1ODgxNDVCUUhSeWdZaG8vSWdaUkRhZFV5dkM2SXkyUGxzSXQzcUErazVsejMrL3BGTkcramNwUUpiWldodFcrL1JlTWxISGR5bEJWVVk1MERhUEppeTAyRy9UeFBHT3hYcmtGMHRkNkFvSE5ib245WkFJNndPdTMvTW5sUzNnSjNQMDBsTVJkd0ZKU2xQYWdkQ1ZITkxZWTg4ZVJYS24xNVZET2M0UUoyeHdmazE1Unh0NVE9PQ=="
+					},
+					"AkkaMDC_DEV_199.143to93_odswriter": {
+						"dest": "93",
+						"from": "199.143",
+						"login": "odswriter",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCd3Z5czdGY3lXWm9malduQkhnYmFka3BXZEFGN29VNWtYMmc4WTFWTFdtNm5NWDd6YkZTWVdNNWVvUXNKK3Q1Q3Zsb2lCY0Z4VTZsd3JpNVJ0WFZiYWlveG15MXQ3WGdDR2o5d1NYN2tCZVI0WnpJTEIrR250RFlXMlN4UWJQTEdkWStKMFlmMnU5K3FlbTJhc2x6dEZjTWU1VzFnK3FNRVJzRnhZYUQxaUw1UXZmVkdCQk1EWG9HdTMxUUN0ajdUL3pJbUdDdWwxOERIb2ZqT1hOWnlybTB4a2Z5T0J0bHFOY2VwUFVVNjhhVGNoZFlyM3JnQmE1UE5FV3BDb0tDcm90eTQ4dDVSVEUvdlEyelJZek91NFQvNUNpUVhWajFwYzBCZHo4SXNMd3VQUGdndmNxRmNsR0xjSkpzT1haT3g4TGtRdlI5UlNmZ2gzZmtOaWlaaHlRPT0A2AJoNXd2aDIwUWlObTB4UG43ZTNVOEZsQWM5Y0pyQlJXclZXSElwVDdGQ1BIZzhOV0VmbGRpTjFXMEorZzZLN1FuRThaSm5GcTdvOUluZUM3ajd2VEo1OHcwdXJDL2lRSkNLUm1jVTNPeFlmQnZhckxyaSszWUxTNmNwQmtTdXBXdzBUUlJCSS9IZENaMUhrQnMyc3NUNGVxRkVtWjFQWnVlUEVwQ2VlUFJPNXdXc2lWK2xyN1I4dHIvc3dnVDF1ZG1yRXo1N09Pb25nWWRvR3dLR0NQSnBEYzBKeUZoQTFPU3JJSUlndFFKTXh6blpMUGxSbEZISmxDMVFkZzdONmh0aHpQdEVHaVQ4ZGVCdWI2MWJKREs1elgySS9GRHdTRmFvd1A4RzJVU0I3aDZ2RFR3U01sNHd3N2g1OEM1VVVCeGVUSWlpTnlWUTMvWnRtZUg0bHhSWlE9PQ=="
+					},
+					"AkkaMDC_DEV_199.143to94_odswriter": {
+						"dest": "94",
+						"from": "199.143",
+						"login": "odswriter",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCUFBXODJlODNqOWlnUXdRSHc1VGV1bjc1ZVBVdWt6c0R3RlAvT0h5N2dmd1hpa0lMNXBlUk5aY29CbE5lOTdQQnBaR0R2QkhKeUNweUl0ZkZRTzFCN1JYTUcxZWJyeStvbEZoeENoQnMzVzVUWHJqNmJCYjI4cTZpcmdIU1J6bUlrbE5yOUJwYUlsSW44QWpmT3AxY2hQQmFyZjR5ZmN3QU9KRWx0cjNMOG5IMkUyemJjeU5QTEpXZ0V6YWJoem9vQ2tYQUNsQnlJc0dKRGhzcnpXYWVSSXh6eURTTnNUTFo2Z3dZa2NSOFh5THZleFRkTkRxWnRYSzcyTVFjSWdKa3ZXZ1ZsQU1VdWVhSHpZOEloK2R3b1RteWE4L01SK005TUNhRmE3ZEc3ekFOeWVJQmI5aG1YT281Vy9KZm41L3lLYzJ3ZUFNd3Z6dlhobjliYjNXTVlRPT0A2AJ5cTlQT29XaWEyNHBTR1hlS2QrQXVaMEtJZnhvL1lFK3B4UU1jcXJEQnlmd1BSaS9GUmdHZi9JL28zVmhaRzh3RGkweDcyODR1dk1BcU9sZm1Wajc1TXphUG9zMkdxVjMyd0ZZTkp4cEphZEZHaitibjdnZkFzNmhReFR3NUE4MkRaMjF5RXBPQkFlWHlBZ2pMQlZRUGFmOERHRkJNTmhHeEtRbGN3V0EyU3JGbW9UcnV6TmRrOFFUeFBZVldSbWhsOXJ5anhiaFp4TlFlN2JOd2tjNGg3bzN0NTJQamFzcHB6WEx5L21CaVJLWEJ4VlNkN2haOEp4YmIxZnJzeTZuVE1CMytLU0dzQlhKbEJTRFhyUWcxRzZMWWJleGluaDZxR0podXc4eVhLeXg5eDErcDVubFA2L1VPUWRTa0tsUWFHR0tRdHZMWm9KQTltOWlpcWRkMUE9PQ=="
+					},
+					"AkkaMDC_199.143to94_odswriter": {
+						"dest": "94",
+						"from": "199.143",
+						"login": "odswriter",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCeUp6THptZE8rWlB0NGVEWStjc1RZOVROT2xQQk9Yd3VnR0RROHJoK3I0ZTJmVWxuM0xtcGt4QzZ0ci9maWZLeS93b1pBT1JLNHFwcTJESDJvcTZqYzJ4OTBIUGVTS05sUit6dkxPRER5ZDNQOFJNbzQxMWhrbWhLOHdOb2cwRVVWZ0hqQVUxU2p3SEdYTHNTaHpxQS9PaTZRdGo0TlZDbzRRaXlHQjI2dEtHOG9LS0xMdTFyZUhTSDdWMmt6WXlySDc5K1EwL0JSaXM1aDN4dWpXdFNkaDc2QXBhajJPSGt3dzRQY2dINk9FN0dORVZ0cXg4UERxRFNkY1I1endGcmFzZzRhYlA0alpTYjM1R2Z0WlJFTmxjdjBYZ3lOb0twREFsVGpkSnczNDBkeGVyN2Zkc3hoVlZFeHhaRWFXNE9EekFZMU53TkY5TkdkeE95eHR2bjNBPT0A2AJLMWdCMlQ4aXlyM2dOOUtMQTdNcnlmTXNTSm1OUHBJMDdIaFdyRHdpbGpWTjFPSnNud280MlNhZk5JU1JZYkRPNGg5UFg3b3dvOXVJUUZGVVVqRHdGNUlLZHNsQkk1MDdRSzVhVm4xWU9LSUhCY2ljTUVSYUo5bWhUckpBODF0NGZGSVlDYlphWlFjV3NiS1NKMk1ZWFlva2g4QXllVGhJbHdvS1hlaTNvNldLUitxRERId1BvTDg2TXpqVlVqeWZjYXRHMlFEOGZkOUd6N05rcUpYNGJCcGN0czVDVDdDbFZBYnRacUpmYzhpV0lMdmV1NlI3M0dLTDRvVFowS1BMWkJYdWVuNy8zbU5RQlNiVGlNcG10cGUzT21sOEc2dlcwc0xocWdVcWYvUWJHZVdFeVBBMWZGMW16NXhsbERweFVLMVRtc3FieUpFTHM4RnEvWDg4ZVE9PQ=="
+					},
+					"DynAkka_199.143to94,1434_sa": {
+						"dest": "94,1434",
+						"from": "199.143",
+						"login": "sa",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCT0pURy9HMi9Kc093TGhEUHU1MmxSQ2Z1L1NkaXpjc0Zib1dnRW9pdEJuL2QwQlRSZnFhWWpYaW9JTjdCeE9WYkIySEVvSDhma2t0eXJPdGdXeklIZEt4dGZ0ZWZoT3BzNUZtVE9WaHBJWU1ING9BS3dCYjZNWTlvdDl1dXo0OGRGRDJqMDNkcXFxK2F1aFhlYVFuc1Y5aEFwMzhTMkpIek9iZDUrM2d5TFVmZnVFUFg5QjU4dTNiSDZoTXJDd0pCMUtwOXNxL2xiZ1RkaDNJeVBGRjA5S3dYdUllbXdtaGhkQXR0ejZCOXhsMFVDQzhwbnE3b0QzMnZmYm5nRW5PUGMvTldUK3JMcTZLUGFQZkZMWGJXOUN5aFNPMmxYenZXMnNBTDIxNjZZTGJNWDV5L0dTNDgzKzFsdVBJanNYY3R1UlVlTnVlM1J2U2QwWjhpeU5YcDJ3PT0A2AJNVWpaUzZFVUI3WDIzakVwWXFrSjdMZk01eVB3WDk2Y3VpRHNqZTFVSmMyb1NCSHFHT09qY1Y4OW41Y1RjTGp3OFZzS05VSUZRa1hXNHk0RVU4aWhwYXUrcDl4WE41WU5RelpEdE5Tak5yM0tGSkRXdDByTEpHNUVXbnNqMk92NlFnTWpaNktmeGVKbTh0cXlMVWtSVTlidnJwNExUNlJEUFVQeGltSWZWaDcwMzE4Wmpsd09JL2xRNDVmSG50aSt6WjY3dFVISE9Uc0h2cEpkQk1Sd1BVTzFWYlRtRUJoQklaQmd5V2NISEZUd0xsWWFHUzFaNnNrb2dBb1dybmQ3ZkJidjVRR2tXNXVVeXJ4K0tRSG9TQ2FvVDRjM1BYdjYwU1NKUnFSdUdQbFVOcEtrVkZWNzNtcG42Z2dwUWMxUlg3MXRQWS8zcUNnQzBOczJXWjZIM3c9PQ=="
+					},
+					"AkkaMDC_199.143to98_sa": {
+						"dest": "98",
+						"from": "199.143",
+						"login": "sa",
+						"conn_str": "AM6R9aAP6f0AAAEPU3lzdGVtLlN0cmluZ1tdAM6R9QIAAAAQzpH1ANgCbndRMmRxSFFPZytHcHNMN3Mrc1lIN3c3WW5GK1dCZHY3dGNxamRKK0J6SjZTNEhlOVIxU2c0Vk1Rc05TQ1VYTlBOMlZvaWtyTVU5eDNBd2RJRFl0aklKQjFIcnpISVJzdU93WGRxZnRZVDI2c1Fkd2tiaVlvVmNvdlc5Nnd1RGUzSG9qZVVvd242SmNkL0JYZk9FNm9CSFYrSGo5STVZWVlKR1lMVjdrbE1mU3pTU1hmMG8yeU82aFdpNXB0L3k4aHNsTC9XVWdycGZITEN0WFNZOUdIQjR0L2ZqQ3J5WnNPZkNWT0FxLzFzcEkrZVFPenRydTdWS04yQ29hOEhVMVBrTjNEM0VuNjZ5UU9oR2pYRDRoZXZBVkJGMjIrLzA1UCtMVGh1OUZRV2JtYkZGWUpDQkhzalZwWmFLd3NGbVJhSEU4T2ZYb1BvdlFMS25wb2ZtYzRnPT0A2AJFU2hxTytXQ2ZDN3B6bG0raUYwVVhqZXBVaytBc0xqR3pOb0NDZkk0TFNSUkZQL09vajZxY1U5dlA2cTdwb3NGZy9IUkQ0VDhJSy9DbTZINzVKV2pJak4yL2RRaCtmakJJUXQ2SnZFbHhkKzRGS2tMZUVQdGczeFBOZlpSWHJCNkJldlUvUWkyRHAyc0c3Sm80cC82ZmxuZDhFYjFTeFN2dXJVV29PNzNXYk5EOXJCelFZL0ZKK0hUM21kcVVDMDdObWFyRnRoUlYyWE4vbGllTVRHRldQc2VyMmVxVVJvUXd0aXN1WDdvRXNrWmxGcElnN2phUHpmcmE2eHh0eWtpUndxeURQdTJzWFVsdHVJaGI3OTl0dFFseUpMSzcrVGlCNWNqVllHclJDcmpsZ2xvaitOc1NUK3ZsL3Z6bXBiWHhrcTJ4d2YyUXljekpNVTBmTWROQ0E9PQ=="
+					}
+				}
+			}
+		}
+	],
+	"Credentials": [
+		{
+			"uid": "anibal.yeh@tecpal.com",
+			"pwd": "anibal"
+		}
+	],
+	"JwtSettings": {
+		"Issuer": "TecPal Limited",
+		"SignKey": "^#*T$%GI492-0up#YTQKe9qJ"
+	},
+	"CryptoConf": {
+		"cred": {
+			"pubKey": "G:/ingted.com/myKey.pub.txt",
+			"privateKey": "G:/ingted.com/myKey.private.txt"
+		}
+	},
+	"misc": {
+		"ODSWriter": {
+			"tickTable": "Tick",
+			"SQLServerTPV": "[ods].InsertTick",
+			"ds_tick": "AkkaMDC_sa",
+			"tickCheckInterval": 60000,
+			"mdp": 4,
+			"multi_single_size":  100000,
+			"failCount": 10,
+			"ifRerun": true
+		},
+		"ODSWriter_DEPRECATED": {
+			"tickTable": "Tick_143",
+			"target": "ODSRead_143",
+			"variable": "offset",
+			"tickCheckInterval": 5000,
+			"failCount": 10,
+			"ifRerun": true,
+			"multiPersistSidMod": 1,
+			"multiPersistEidMod": 1,
+			"singlePersistSidMod": 1,
+			"singlePersistEidMod": 1,
+			"multiPersistChildCount": 1,
+			"singlePersistChildCount": 1,
+			"roundRobinDegree": 10,
+			"roundRobinDegreeMulti": 1,
+			"P1BatchTimeout":  87000,
+			"P2SingleTimeout": 78000,
+			"CommitSingleTimeout": 60000,
+			"ifDebug": false,
+			"debug": {
+				"takeCount": 1000
+			}
+		},
+		"eidMod": 5,
+		"sidMod": 10,
+		"processingNodeRole": "ShardProcessingNode",
+		"signalNodeRole": "ShardSignalNode",
+		"execMode": "service",
+		"login": "G:/ingted.com/login.txt",
+		"sub": [
+			"mysub -b CME All -l ES.2306",
+			"myhis -h 10 CME ES.2306 true -d hdepth -g -e -f hutc",
+			"myhis -h 20 CME ES.2306 true -d htick -g -e -f hutc"
+		],
+		"tickers": [
+			
+			[ "hisResp.candlestick.CME", "ES.2306" ]
+		],
+		"fappTickers2dw": [
+			{	
+				"fapp": "candlestick",
+				"tickers": [
+					[ "hisResp.candlestick.CME", "ES.2306" ],
+					[ "hisResp.candlestick.CME", "TY.2306" ]
+				]
+			},
+			{	
+				"fapp": "tick",
+				"tickers": [
+					[ "hisResp.tick.CME", "ES.2306" ],
+					[ "hisResp.tick.CME", "TY.2306" ]
+				]
+			}
+		],
+		
+		
+		"partitionKeyTag": {
+			"NQ": 1,
+			"ES": 2,
+			"YM": 3,
+			"TY": 4
+		},
+		
+
+		"utcTradingDateSplitter": {
+			"NQ": "13:30",
+			"ES": "13:30",
+			"YM": "13:30",
+			"TY": "13:30"
+		},
+		"stateCDClearInterval": 0,
+		"desc": {
+			"tickers usage": "sharded entity 需要用 heartbeat 帶起來",
+			"replenishment usage": "回補",
+			"utcTradingDateSplitter usage": "+8 5點收盤 休息到 6點開電子盤 21:30開日盤，也就是 utc 13:30 之前算前一日，之後算當日",
+			"sub": [
+				"mysub -b CME All -l ES.2306",
+				"mysub -b CME All -l NQ.2306",
+				"mysub -b CBT All -l YM.2306",
+				"mysub -b CBT All -l TY.2306",
+				"myhis -h 5 CME ES.2306 true -d hdepth -g -e -f hutc",
+				"myhis -h 5 CME NQ.2306 true -d hdepth -g -e -f hutc",
+				"myhis -h 5 CBT YM.2306 true -d hdepth -g -e -f hutc",
+				"myhis -h 5 CBT TY.2306 true -d hdepth -g -e -f hutc"
+			],
+			"tickers": [
+				[ "quoteChange.CME", "NQ.2306" ],
+				[ "quoteChange.CME", "ES.2306" ],
+				[ "quoteChange.CBT", "YM.2306" ],
+				[ "quoteChange.CBT", "TY.2306" ],
+				[ "hisResp.tick.CME", "ES.2306" ],
+				[ "hisResp.candlestick.CME", "ES.2306" ]
+			],
+			"replenishment": [
+				"目前用不著",
+				"myhis -h 0 CME NQ.2306 false -d htick -g -p 0 144000000 -e -f hutc",
+				"myhis -h 0 CME ES.2306 false -d htick -g -p 0 144000000 -e -f hutc",
+				"myhis -h 0 CBT YM.2306 false -d htick -g -p 0 144000000 -e -f hutc",
+				"myhis -h 0 CBT TY.2306 false -d htick -g -p 0 144000000 -e -f hutc"
+			]
+		}
+	},
+	"fAppConfig": {
+		"port": "9001, 9001",
+		"hostnametype": "auto, auto",
+		"hostname": "0.0.0.0",
+		"pubhostname": "0.0.0.0",
+		"persistdbplugin": "akka.persistence.journal.sql-server",
+		"persistdbssplugin": "akka.persistence.snapshot-store.sql-server",
+		"persistdb": "AkkaPersistence_MDC",
+		"persistdbuid": "KYxHaTTJ4jiYS2geKVLxlDuIJUMDe/7eoDKLJd66N+cel6RlOnGxM6bNu5GmMLqK+yF2DsOn31Tq+8/hn8+SShzbZI0AnWNKCKCBLkeIRQPLBrV5kfGDiKYBCbgZokRBvdgqXA3sUmV6yEo0EHW5ZnmryTtnEP4Lcyrmhcv7lABf/UVZsAlgKZTA7LQ+oDaqPANPxP9/j8ZK0jIqpCC3svoH++ppGleaE3/AGq8+8Oocz3wnK/BjLDjeSnCwDVqwqZ3wZrfgTMtVxAxV1CMTjb3FmQQqWPiSjlJkLnuZXZUcgiecFJ9hhAdi2i6MWPv3k1TEKViThSsxx4RzDfw9rg==",
+		"persistdbpwd": "Lq9lQ0J+NnS+TKKQqmHx4NvTtKCF1KINJAAOaRVGNdvKYI4i7Sa0ja2UoT/nXqHpjrZBu+4mx2qxuOGvKRwE6Z4yhpiyD+3WJryGIyROHmq2+vKffCUxKeRodjfx0ukQvSXPIAQN+7aDozjaZAhD5m8XRi7TMYbmmZvQ06yogE3hUAqm67gY+yiLKIzU/D5UFPUgYvplyz9V7BhtAJ6sXfUvaVG09nxCQjO78K4DOhhwGgWCir/3xQTvTa4Y5M8/ovQQAbyWIbFeK9nfkWfcoLzC4Y18s8Q/4G25cSTFjdEhjAHRwJ3ZE0rdSKNgExBsuLoxlTiQqPGv/ODJc0uDyw==",
+		"pbport": "9101",
+		"fakkadb": "FAkkaDB",
+		"persistdbhost": "10.28.112.98",
+		"seedhost": "10.28.199.143",
+		"seedport": "9000"
+	}
+}

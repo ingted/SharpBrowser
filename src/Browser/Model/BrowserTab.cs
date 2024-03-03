@@ -10,7 +10,7 @@ namespace SharpBrowser.Browser.Model {
 	/// <summary>
 	/// POCO created for holding data per tab
 	/// </summary>
-	internal class BrowserTab {
+	public class BrowserTab {
 
 		public bool IsOpen;
 

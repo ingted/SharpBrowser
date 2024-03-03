@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    
+	  <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	  <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="FApp PubSub.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Compiler.Service" Version="43.7.300-preview.23114.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\coldfar_py\sharftrade7\Libs\FAkka.Shared\FAkka.Shared.fsproj" />
+    <ProjectReference Include="..\src\SharpBrowser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\Users\anibal\.nuget\packages\fakka.shared\1.4.6\contentFiles\any\net7.0\global.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="7.0.300-beta.23114.3" />
+  </ItemGroup>
+
+</Project>
