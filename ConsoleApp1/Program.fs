@@ -207,6 +207,7 @@ type Helper (browser:ChromiumWebBrowser, mre:ManualResetEvent, htmlHandlerOpt:(s
                     this.BrowserLoadingStateChanged browser x
                     
             )
+        let r = browser.EvaluateScriptAsync("").Result.
         browser.Load url
         let _ = mre.WaitOne ()
         disposable.Dispose ()
